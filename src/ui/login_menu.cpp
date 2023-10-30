@@ -1,4 +1,5 @@
 #include "ui/login_menu.hpp"
+#include "ui/medico_menu.hpp"
 
 #include "model/medico.hpp"
 #include "model/paciente.hpp"
@@ -80,7 +81,8 @@ Menu *LoginMenu::next(unsigned option) {
 
     model::Medico medico(reg_crm, especialidade, email, info);
     std::cout << "Salvando Médico: " << medico.to_string() << std::endl;
-    break;
+
+    return new MedicoMenu(medico);
   }
   }
 
