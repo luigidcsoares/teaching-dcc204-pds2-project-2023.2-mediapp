@@ -5,6 +5,9 @@
 #include "model/paciente.hpp"
 #include "model/usuario.hpp"
 
+#include "repository/medico_fake.hpp"
+#include "service/medico.hpp"
+
 #include <iostream>
 #include <string>
 
@@ -33,6 +36,9 @@ Menu *LoginMenu::next(unsigned option) {
     std::cin >> info.idade;
   };
 
+  repository::MedicoFake r_medico;
+  service::Medico s_medico(r_medico);
+ 
   switch (option) {
   case 1: {
     char tipo;
@@ -43,6 +49,15 @@ Menu *LoginMenu::next(unsigned option) {
     ler_autenticacao(email);
 
     std::cout << "Logando: " << email << std::endl;
+
+    if (tipo == 'm') {
+      model::Medico *medico = s_medico.autenticar(email);
+      // if (medico == nullptr) ...
+      return new MedicoMenu(*medico);
+    } else {
+      // TODO: paciente
+    }
+      
     break;
   }
   case 2: {
