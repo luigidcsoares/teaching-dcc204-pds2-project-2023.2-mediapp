@@ -12,9 +12,7 @@ int main() {
   ui::Menu *menu = login.next(option);
   while (menu != nullptr) {
     menu->render();
-  
     std::cin >> option;
-    std::cin.ignore(max_input, '\n');
 
     ui::Menu *old_menu = menu;
     menu = menu->next(option);
