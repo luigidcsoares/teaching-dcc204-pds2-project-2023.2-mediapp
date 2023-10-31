@@ -7,7 +7,7 @@ namespace mediapp::ui {
 class Menu {
 public:
   /// @brief Destrutor virtual, para correta destruição de filhos.
-  virtual ~Menu() {}
+  virtual ~Menu() = default;
 
   /// @return O próximo menu, a partir da seleção do usuário.
   virtual Menu *next(unsigned option) = 0;
